@@ -1,27 +1,50 @@
 # CrPcd
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+This is a Costa Rica PCD (province, cantons, districts) angular library.
 
-## Development server
+# Installation
+Install the dependency:
+```
+npm i --save cr-pcd
+```
+Then you can use it in your angular project.
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { CrPcdService } from 'cr-pcd';
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.sass']
+})
+export class HomeComponent implements OnInit {
 
-## Code scaffolding
+  provinces: any;
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  constructor(
+    private crPcd: CrPcdService
+  ) { }
 
-## Build
+  async ngOnInit() {
+    this.provinces = this.crPcd.getProvinces();
+  }
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+}
+```
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## API
+## Get provinces
+To return all provinces use:
+```
+getProvinces()
+```
+## Get cantons
+To return a specific canton you must provide a `provinceId`:
+```
+getCantons('1')
+```
+## Get districts
+To return a specific district cantons you must provide a `cantonId`:
+```
+getDistricts('1')
+```
