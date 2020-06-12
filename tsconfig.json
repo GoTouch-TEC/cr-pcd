@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "cr-pcd": [
+        "dist/cr-pcd"
+      ],
+      "cr-pcd/*": [
+        "dist/cr-pcd/*"
+      ]
+    }
   }
 }
